@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background: #1e1b78;
+  }
+  body {
+    @apply bg-stage font-sans text-paper antialiased;
+    min-height: 100vh;
+  }
+  h1, h2, h3 {
+    @apply font-display tracking-tight;
+  }
+  /* Keyboard focus is always visible */
+  :focus-visible {
+    outline: 3px solid #ffd23f;
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* The buzzer: chunky, and it physically presses down */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-display text-base font-extrabold
+      transition-transform select-none disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-buzzer text-ink;
+    box-shadow: 0 5px 0 #b98f00;
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 #b98f00;
+  }
+  .btn-ghost {
+    @apply border border-line bg-transparent text-paper hover:bg-white/10;
+  }
+  .field {
+    @apply w-full rounded-lg border border-line bg-sunk px-4 py-3 text-paper placeholder:text-muted/70;
+  }
+  .panel {
+    @apply rounded-2xl border border-line bg-raised/60 p-5 sm:p-6;
+  }
+}
